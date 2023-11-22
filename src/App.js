@@ -10,6 +10,45 @@ const TODO_TASKS = [
   { taskName: 'Apply for Jobs', completed: false },
 ]
 
+function AddTask() {
+  const [open, setOpen] = React.useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  return (
+    <React.Fragment>
+      <Popup trigger=
+              {<button className='primary-button' onClick={handleClickOpen}>Add Task</button>} 
+              modal nested overlayStyle={{backdropFilter: 'blur(8px)', background: 'rgba(0, 0, 0, 0.6)'}}>
+              {
+                  close => (
+                      <div className='dialog'>
+                          <div className='content'>
+                              Add Task
+                          </div>
+                          <div>
+                              <button className='secondary-button' onClick=
+                                  {() => close()}>
+                                      Close
+                              </button>
+                              <button className='secondary-button' onClick=
+                                  {() => close()}>
+                                      Add Task
+                              </button>
+                          </div>
+                      </div>
+                  )
+              }
+          </Popup>
+    </React.Fragment>
+  );
+}
 
 function TaskRow({ task }) {
   const [completed, setCompletionStatus] = useState(task.completed);
@@ -51,6 +90,7 @@ function App() {
   return (
     <div>
       <TasksTable tasks={TODO_TASKS}/>
+      <AddTask/>
     </div>
   )
 }
