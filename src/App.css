@@ -7,14 +7,6 @@ body {
   justify-content: center;
   color: white;
 }
-
-.dialog {
-  background-color: #282c34;
-  padding: 15px 30px;
-  backdrop-filter: sepia(10px);
-  border: 2px solid #61dafb;
-}
-
 .primary-button {
   background-color: #61DAFB;
   border: none;
@@ -38,7 +30,7 @@ body {
     sans-serif;
     -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  margin-block: 7px;
+  margin: 7px;
 }
 
 .table-container {

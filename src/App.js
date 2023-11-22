@@ -1,54 +1,7 @@
 import Checkbox from '@mui/material/Checkbox';
 import * as React from 'react';
-import Popup from 'reactjs-popup';
 import { useState } from 'react';
 import './App.css';
-
-const TODO_TASKS = [
-  { taskName: 'Brush Teeth', completed: true },
-  { taskName: 'Learn React', completed: false },
-  { taskName: 'Apply for Jobs', completed: false },
-]
-
-function AddTask() {
-  const [open, setOpen] = React.useState(false);
-
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
-
-  return (
-    <React.Fragment>
-      <Popup trigger=
-              {<button className='primary-button' onClick={handleClickOpen}>Add Task</button>} 
-              modal nested overlayStyle={{backdropFilter: 'blur(8px)', background: 'rgba(0, 0, 0, 0.6)'}}>
-              {
-                  close => (
-                      <div className='dialog'>
-                          <div className='content'>
-                              Add Task
-                          </div>
-                          <div>
-                              <button className='secondary-button' onClick=
-                                  {() => close()}>
-                                      Close
-                              </button>
-                              <button className='secondary-button' onClick=
-                                  {() => close()}>
-                                      Add Task
-                              </button>
-                          </div>
-                      </div>
-                  )
-              }
-          </Popup>
-    </React.Fragment>
-  );
-}
 
 function TaskRow({ task }) {
   const [completed, setCompletionStatus] = useState(task.completed);
@@ -63,34 +16,48 @@ function TaskRow({ task }) {
   )
 }
 
-function TasksTable({tasks}) {
+function TasksTable() {
   const rows = [];
-  const [list, setList] = React.useState(tasks);
-  function handleAdd({task}) {
-    const newList = list.concat({task});
-    setList(newList);
+  const [taskList, addTaskToList] = React.useState([]);
+  const [taskName, setTaskName] = React.useState('');
+  function handleAdd() {
+    const newTask = {taskName, completed: false};
+    addTaskToList([...taskList, newTask]);
+    setTaskName('');
   }
-  tasks.forEach(task => {
+  taskList.forEach(task => {
     rows.push(<TaskRow task={task} key={task.taskName}></TaskRow>)
   });
   return (
-    <table>
-      <thead>
-        <tr>
-          <th>Task</th>
-          <th>Completed</th>
-        </tr>
-      </thead>
-      <tbody>{rows}</tbody>
-    </table>
+    <div>
+      <table>
+        <thead>
+          <tr>
+            <th>Task</th>
+            <th>Completed</th>
+          </tr>
+        </thead>
+        <tbody>{rows}</tbody>
+      </table>
+      <center>
+        <div className='content'>
+          <p>Add Task</p>
+          <input type='text' id='taskName' value={taskName} onChange={(e) => setTaskName(e.target.value)} />
+        </div>
+        <div>
+          <button className='secondary-button' onClick={() => handleAdd()}>
+            Add Task
+          </button>
+        </div>
+      </center>
+    </div>
   );
 }
 
 function App() {
   return (
     <div>
-      <TasksTable tasks={TODO_TASKS}/>
-      <AddTask/>
+      <TasksTable/>
     </div>
   )
 }
