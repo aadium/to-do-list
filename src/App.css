@@ -70,12 +70,13 @@ body {
 }
 
 table {
-  width: 100%;
+  width: 700px;
   border: 3px solid #61DAFB;
   border-spacing: 0;
   border-collapse: separate;
   border-radius: 10px;
   background-color: #151515;
+  margin-bottom: 10px;
 }
 
 th, td {
@@ -87,6 +88,10 @@ th {
   color: #61dafb;
   border-bottom: 2px solid #202020;
   font-size: 15px;
+}
+
+#completed {
+  color: gray;
 }
 
 .App-link {
