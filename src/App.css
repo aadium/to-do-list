@@ -1,5 +1,5 @@
 body {
-  background-color: #282c34;
+  background-color: #101010;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -11,12 +11,12 @@ body {
   background-color: #61DAFB;
   border: none;
   padding: 10px 20px;
+  font-size: 20px;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
     -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  width: 270px;
   margin-block: 10px;
 }
 
@@ -46,23 +46,23 @@ table {
 }
 
 th, td {
-  border: 1px solid #495057;
+  border: 1px solid #343434;
   padding: 12px;
   text-align: left;
 }
 
 th {
-  background-color: #343a40;
+  background-color: #1a1a1a;
   color: #61dafb;
   border-bottom: 3px solid #61DAFB;
 }
 
 tr:nth-child(even) {
-  background-color: #343a40;
+  background-color: #1a1a1a;
 }
 
 tr:nth-child(odd) {
-  background-color: #282c34;
+  background-color: #101010;
 }
 
 .App-link {
