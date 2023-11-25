@@ -30,6 +30,21 @@ app.post('/api/post', (req, res) => {
   });
 })
 
+app.put('/api/update_completion/:taskId', (req, res) => {
+  const taskId = req.params.taskId;
+  const newCompletionStatus = req.body.completed;
+
+  // Update completion status in the database
+  db.query('UPDATE todo_tasks SET completed = ? WHERE id = ?', [newCompletionStatus, taskId], (err, result) => {
+    if (err) {
+      console.error('Error updating completion status in the database:', err);
+      res.status(500).send('Internal Server Error');
+    } else {
+      res.status(200).send('Completion status updated successfully');
+    }
+  });
+});
+
 app.delete('/api/delete/:id', (req, res) => {
   const id = req.params.id;
 
