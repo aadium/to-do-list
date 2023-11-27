@@ -7,18 +7,21 @@ import '../App.css';
 function TaskEntry({ task }) {
   const [completed, setCompletionStatus] = useState(Boolean(task.completed));
   const dateCreated = new Date(task.id);
-  var iconColor;
+  const dueDate = new Date(task.duedate);
+  var iconColor = '#61DAFB';
+  var textColor = '#61DAFB';
+  if (task.duedate - Date.now() < 172800000) {
+    iconColor = 'orange';
+    textColor = 'orange';
+  };
+  if (task.duedate - Date.now() <= 0) {
+    iconColor = 'red';
+    textColor = 'red';
+  }
   if (task.completed) {
     iconColor = 'grey';
-  } else {
-    iconColor = '#61DAFB';
-  };
-  var textColor;
-  if (task.completed) {
     textColor = 'grey';
-  } else {
-    textColor = 'white';
-  };
+  }
   const handleCompletionStatusChange = async () => {
     await setCompletionStatus(task.completed = !task.completed)
     try {
@@ -40,7 +43,8 @@ function TaskEntry({ task }) {
     <tr>
       <td><IconButton aria-label='delete' onClick={(() => deleteTask(task.id))}><DeleteIcon style={{color: iconColor}} /></IconButton></td>
       <td><font style={{color:textColor}}>{task.taskname}</font></td>
-      <td><font style={{color:textColor}}>{dateCreated.toDateString().substring(4)}<br/>{dateCreated.toTimeString().substring(0,5)}</font></td>
+      <td><font style={{color:textColor}}>{dateCreated.toDateString().substring(4)}</font></td>
+      <td><font style={{color:textColor}}>{dueDate.toDateString().substring(4)}</font></td>
       <td><Checkbox checked={completed} onChange={handleCompletionStatusChange} style={{ color: iconColor }} /></td>
     </tr>
   )

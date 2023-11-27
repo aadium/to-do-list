@@ -2,9 +2,8 @@ import React, { useState, useEffect } from 'react';
 import '../App.css';
 import TaskEntry from './taskEntry';
 
-function TasksTableComponent() {
+function PendingTasksTableComponent() {
   let pendingTaskRows = [];
-  let completedTaskRows = [];
   const [taskList, setTaskList] = useState([]);
 
   useEffect(() => {
@@ -15,39 +14,27 @@ function TasksTableComponent() {
   }, []);
 
   taskList.forEach(task => {
-    if (task.completed===1) {
-      completedTaskRows.push(<TaskEntry task={task} key={task.taskName}/>);
-    } else {
+    if (task.completed===0) {     
       pendingTaskRows.push(<TaskEntry task={task} key={task.taskName}/>);
     }
   });
   
   return (
     <div>
-      <table>
+      <table className='tasks'>
         <thead>
           <tr>
             <th></th>
             <th>Task Name</th>
             <th>Created</th>
+            <th>Due</th>
             <th>Completed</th>
           </tr>
         </thead>
         <tbody>{pendingTaskRows}</tbody>
       </table>
-      <table>
-        <thead>
-          <tr>
-            <th></th>
-            <th id='completed'>Task Name</th>
-            <th id='completed'>Created</th>
-            <th id='completed'>Completed</th>
-          </tr>
-        </thead>
-        <tbody>{completedTaskRows}</tbody>
-      </table>
     </div>
   );
 }
 
-export default TasksTableComponent;
+export default PendingTasksTableComponent;
