@@ -24,7 +24,7 @@ app.post('/api/post', (req, res) => {
   const completed = req.body.completed;
   const dueDate = req.body.dueDate
 
-  db.query("INSERT INTO todo_tasks VALUES (?,?,?,?,?)", [username, title, completed, Date.now(), dueDate], (err, result) => {
+  db.query("INSERT INTO todo_tasks VALUES (?,?,?,?)", [title, completed, Date.now(), dueDate], (err, result) => {
     if (err) {
       console.log(err)
     }

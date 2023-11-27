@@ -2,7 +2,6 @@ import '../App.css';
 import AddTaskComponent from '../components/addTask';
 import PendingTasksTableComponent from '../components/pendingTasksTable';
 import CompleteTasksTableComponent from '../components/completeTasksTable';
-import ViewUpdateTaskComponent from '../components/viewUpdateTask';
 
 function App() {
   return (
@@ -20,8 +19,6 @@ function App() {
           <td align='right' valign='top'>
             <div className='sidebar'>
               <AddTaskComponent/>
-              <hr color='grey'></hr>
-              <ViewUpdateTaskComponent/>
             </div>
           </td>
         </tr>

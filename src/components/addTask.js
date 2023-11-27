@@ -16,7 +16,7 @@ function AddTaskComponent() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ username: 'test', title: taskName, completed: false, dueDate: dayjs(dueDateValue).valueOf() }),
+        body: JSON.stringify({ title: taskName, completed: false, dueDate: dayjs(dueDateValue).valueOf() }),
       }).catch(error => console.error('Error adding task:', error));
     }
     window.location.reload();
