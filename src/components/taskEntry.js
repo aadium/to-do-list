@@ -1,10 +1,15 @@
 import React, { useState } from 'react';
 import { IconButton, Checkbox } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
+import InfoIcon from '@mui/icons-material/Info';
 import Axios from 'axios'
 import '../App.css';
+import ViewTaskComponent from './viewTask';
+import { render } from '@testing-library/react';
+import { useNavigate } from 'react-router-dom';
 
 function TaskEntry({ task }) {
+  let navigate = useNavigate();
   const [completed, setCompletionStatus] = useState(Boolean(task.completed));
   const dateCreated = new Date(task.id);
   const dueDate = new Date(task.duedate);
@@ -39,9 +44,13 @@ function TaskEntry({ task }) {
     });
     window.location.reload();
   }
+  const showTaskDetails = (id) => {
+    navigate(`/viewtask/${id}`)
+  }
   return (
     <tr>
       <td><IconButton aria-label='delete' onClick={(() => deleteTask(task.id))}><DeleteIcon style={{color: iconColor}} /></IconButton></td>
+      <td><IconButton aria-label='info' onClick={(() => showTaskDetails(task.id))}><InfoIcon style={{color: iconColor}} /></IconButton></td>
       <td><font style={{color:textColor}}>{task.taskname}</font></td>
       <td><font style={{color:textColor}}>{dateCreated.toDateString().substring(4)}</font></td>
       <td><font style={{color:textColor}}>{dueDate.toDateString().substring(4)}</font></td>
