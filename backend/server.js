@@ -18,6 +18,16 @@ app.get("/api/get", (req, res) => {
   });
 });
 
+app.get('/api/gettask/:id', (req, res) => {
+  const id = req.params.id;
+  db.query("SELECT * FROM todo_tasks WHERE id = ?", id, (err, result) => {
+    if (err) {
+      console.log(err)
+    }
+    res.send(result)
+  })
+})
+
 app.post('/api/post', (req, res) => {
   const username = req.body.userName;
   const title = req.body.title;

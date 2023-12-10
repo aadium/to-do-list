@@ -30,7 +30,7 @@ function AddTaskComponent() {
       <div className='date-selector'>
         <LocalizationProvider dateAdapter={AdapterDayjs}>
           <DemoContainer components={['DatePicker']}>
-            <DatePicker label="Select due date" value={dueDateValue} onChange={(newValue) => setDueDateValue(newValue)}/>
+            <DatePicker label="Select due date" value={dueDateValue} style={{color: '#61dafb'}} onChange={(newValue) => setDueDateValue(newValue)}/>
           </DemoContainer>
         </LocalizationProvider>
       </div>

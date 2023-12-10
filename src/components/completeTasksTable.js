@@ -25,6 +25,7 @@ function CompleteTasksTableComponent() {
         <thead>
           <tr>
             <th></th>
+            <th></th>
             <th>Task Name</th>
             <th>Created</th>
             <th>Due</th>
